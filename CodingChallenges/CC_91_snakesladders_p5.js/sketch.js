@@ -19,8 +19,15 @@ let index = 0;
 let averageRolls = 0;
 let avgP;
 
+let board;
+
+function preload() {
+  board = loadImage('snakes-and-ladders-game.jpg');
+}
+
 function setup() {
   createCanvas(400, 400);
+  image(board,0,0);
   avgP = createP('');
 
   rolls[index] = 0;
@@ -47,32 +54,47 @@ function setup() {
   }
 
   // Pick random Snakes
-  for (let i = 0; i < 3; i++) {
-    let index = floor(random(cols, tiles.length - 1));
-    // -1 makes in a Snake (drop down a number of spots)
-    tiles[index].snadder = -1 * floor(random(index % cols, index - 1));
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   let index = floor(random(cols, tiles.length - 1));
+  //   // -1 makes in a Snake (drop down a number of spots)
+  //   tiles[index].snadder = -1 * floor(random(index % cols, index - 1));
+  // }
+  //
+  // // Pick random Ladders
+  // for (let i = 0; i < 3; i++) {
+  //   let index = floor(random(0, tiles.length - cols));
+  //   tiles[index].snadder = floor(random(cols - (index % cols), tiles.length - index - 1));
+  // }
+  tiles[3].snadder= 10;
+  tiles[8].snadder = 22;
+  tiles[19].snadder = 18;
+  tiles[27].snadder = 56;
+  tiles[39].snadder = 19;
+  tiles[62].snadder=18;
+  tiles[70].snadder = 20;
+  tiles[16].snadder = -10;
+  tiles[53].snadder = -20;
+  tiles[63].snadder = -4;
+  tiles[86].snadder = -63;
+  tiles[92].snadder = -20;
+  tiles[94].snadder = -20;
+  tiles[98].snadder = -21;
 
-  // Pick random Ladders
-  for (let i = 0; i < 3; i++) {
-    let index = floor(random(0, tiles.length - cols));
-    tiles[index].snadder = floor(random(cols - (index % cols), tiles.length - index - 1));
-  }
 
   // A new player
   player = new Player();
 }
 
 function draw() {
-  // frameRate(5);
-  background(51);
-
+  frameRate(5);
+  //background(51);
+  image(board,0,0);
   // Draw all the tiles, snakes, and ladders
   for (let tile of tiles) {
-    tile.show();
+    //tile.show();
   }
   for (let tile of tiles) {
-    tile.showSnadders();
+  //  tile.showSnadders();
   }
 
   // Rolling the die
